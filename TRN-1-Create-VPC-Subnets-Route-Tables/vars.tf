@@ -1,3 +1,7 @@
+variable "region" {
+  type = string
+}
+
 variable "vpc_cidr_block" {
   type = string
   description = "CIDR Block of the VPC"

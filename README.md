@@ -1,7 +1,7 @@
 # terraform-training
 Welcome! Here I will put the definition of each exercise and the general comments for everyone. Individual comments will be inside student folder.
 Please work only inside your personal folder. I will put here (at root level) the solution of each exercise peeking randomly one of yours. 
-That way we do not have to create branches. After each exercise **always DESTROY** the infrastructure. Make sure you also run a "terraform destroy" before you delete the state file. Otherwise you will have to delete **manually** the resources. (it is not so difficult ;) ).
+That way we do not have to create branches. After each exercise **always DESTROY** the infrastructure. Make sure you also run a "terraform destroy -var-file=dev.tfvars" before you delete the state file. Otherwise you will have to delete **manually** the resources. (it is not so difficult ;) ).
 Clean your folder after exercise and start solving the next one. 
 
 

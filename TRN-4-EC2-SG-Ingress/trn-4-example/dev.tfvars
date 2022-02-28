@@ -33,4 +33,4 @@ cidr_blocks = [ "0.0.0.0/0" ]
 #ec2
 ami_id = "ami-033b95fb8079dc481" # SET THE AMI FOR AMAZON LINUX 2 ASSOCIATED WITH THE REGION YOU MENTIONED ABOVE
 instance_type = "t2.micro"
-key_name = "john_virginia_1" # SET YOUR OWN KEY PAIR HERE
+key_name = "CHANGEME" # SET YOUR OWN KEY PAIR HERE
