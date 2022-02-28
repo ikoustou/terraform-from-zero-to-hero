@@ -1,4 +1,4 @@
-region = "us-east-2"
+region = "us-east-1"
 name = "trn-4-example"
 
 #vpc
@@ -25,12 +25,12 @@ igw_name = "igw"
 destination_cidr_block = "0.0.0.0/0"
 
 #SG
-from_port = "8"
-to_port = "0"
+from_port = "-1"
+to_port = "-1"
 protocol = "icmp"
 cidr_blocks = [ "0.0.0.0/0" ]
 
 #ec2
-ami_id = "ami-0b614a5d911900a9b"
+ami_id = "ami-033b95fb8079dc481" # SET THE AMI FOR AMAZON LINUX 2 ASSOCIATED WITH THE REGION YOU MENTIONED ABOVE
 instance_type = "t2.micro"
-key_name = "terraform-training"
+key_name = "john_virginia_1" # SET YOUR OWN KEY PAIR HERE

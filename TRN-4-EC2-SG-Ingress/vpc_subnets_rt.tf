@@ -14,9 +14,10 @@ module "subnet_private" {
 module "subnet_public" {
   source = "./modules/subnet"
 
-  vpc_id = module.vpc.vpc_id
-  subnet_cidr_block = var.subnet_public_cidr_block
-  subnet_name = var.subnet_public_name
+  vpc_id                  = module.vpc.vpc_id
+  subnet_cidr_block       = var.subnet_public_cidr_block
+  subnet_name             = var.subnet_public_name
+  map_public_ip_on_launch = true
 }
 #private route table
 module "route_table_private" {

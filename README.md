@@ -122,5 +122,39 @@ This way you can copy one of the above files in another project, without wasting
 ### Testing
 Test your infrastrusture by pinging the public ip of the EC2 instance. If it doesn't take public ip try to solve it. I mentioned the solution during our previous meeting but I didn't see any modification of the **subnet** module. ;)
 
+
+## Exercise-5
+### Definition
+Use the code of the previous exercise to create the same infrastructure. This time add the following additional resources:
+* modify the module for the EC2 instance creation in such way that you do not have to provide the correct ami id of the region. A **data source** will filter the amis for amazon "owner" and "hvm" architecture.
+* Launch a second EC2 instance inside the private subnet.
+* Create a similar with the first Security group which allows ping (icmp). Assign it to the second EC2 instance so it can reply to ping requests from the first ec2 instance.
+* Create a third security group which will allow ssh (port 22) from anywhere and assign it to the first ec2 instance of the public subnet. This way we can connect via ssh to it and then pinging the second ec2 instance.
+
+### Tips
+Use the following data source to filter and identify the correct ami in every region. This piece of code will be placed inside the ec2 instance module definition:
+
+```terraform
+data "aws_ami" "amazon" {
+  owners      = ["amazon"]
+  most_recent = true
+
+  filter {
+    name   = "owner-alias"
+    values = ["amazon"]  
+  }
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+```
+
+
+
+
+
+
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
