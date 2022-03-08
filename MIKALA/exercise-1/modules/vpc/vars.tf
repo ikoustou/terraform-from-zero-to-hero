@@ -3,7 +3,7 @@ variable "cidr_block" {
   description = "The IPv4 CIDR block for the VPC"
 }
 
-variable "vpc_name" {
+variable "name" {
   type = string
   description = "VPC name tag"
 }

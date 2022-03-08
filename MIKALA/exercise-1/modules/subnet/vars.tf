@@ -3,12 +3,12 @@ variable "vpc_id" {
   description = "The VPC ID"
 }
 
-variable "subnet_cidr_block" {
+variable "cidr_block" {
   type = string
   description = "The IPv4 CIDR block for the subnet"
 }
 
-variable "subnet_name" {
+variable "name" {
   type = string
   description = "Subnet name tag"
 }

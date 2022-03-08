@@ -3,7 +3,7 @@ variable "vpc_id" {
   description = "The VPC ID"
 }
 
-variable "route_table_name" {
+variable "name" {
   type = string
   description = "Route table name tag"
 }
