@@ -10,5 +10,5 @@ variable "subnet_cidr_block" {
 
 variable "subnet_name" {
   type = string
-  description = "subnet name tag"
+  description = "Subnet name tag"
 }
