@@ -23,12 +23,12 @@ variable "region" {
 region = "us-east-1"
 ```
 3.  You defined variable "name" inside the "route_table" and inside the "route_table_association" where it is not used. Could you please delete the definition.
-4.  You can definitely ignore this comment here as it is a bit "advanced" for the first exercise. Let me share with you: when I wrote a VPC or a Subnet module for first time I only used the key-keyvalue pair or **Name**, just like you. Then when I became more experienced I realised that we might need more tags than "Name". So what I did was to define a complex variable of **map** type, which means key-keyvalue pairs like that:
+4.  You can definitely ignore this comment here as it is a bit "advanced" for the first exercise. Let me share with you: when I wrote a VPC or a Subnet module for first time I only used the key-keyvalue pair of **Name**, just like you. Then when I became more experienced I realised that we might need more tags than "Name". So what I did was to define a complex variable of **map** type, which means key-keyvalue pairs like that:
 ```terraform
 tags = var.tags
 
 # definition inside vars.tf
-variable "region" {
+variable "tags" {
   type = map
 }
 
