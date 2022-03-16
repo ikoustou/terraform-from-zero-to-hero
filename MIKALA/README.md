@@ -34,6 +34,20 @@ variable "tags" {
 
 ```
 # Exercise2
+I do not have words! You did an exceptional work!!! Well done.
+
+## Comments
+I can say for sure this is exactly the work I was expecting:
+1.  So far you have unsterstood the variables in each level (module level, root level, stage level) and the naming.
+2.  You created outputs of each module.
+3.  You insisted on using **tags** even if it is not "Required". Tagging in AWS always helps you.
+4.  Two different stages with different "dev.tfvars".
+
+Do not forget always to destroy with:
+```terraform
+terraform destroy -var-file=dev.tfvars
+```
+Also pay attention that when creating a VPC a route table is already created with it (which is the **main** route table). The one you create with Terraform code is an additional one.
 
 # Exercise3
 
