@@ -50,6 +50,11 @@ terraform destroy -var-file=dev.tfvars
 Also pay attention that when creating a VPC a route table is already created with it (which is the **main** route table). The one you create with Terraform code is an additional one.
 
 # Exercise3
+You did realy well. I have only one comment:
+
+## Comments
+The folder "example" or "stage" (the name it doesn't matter) should always be present. It was not only for exercise2 but for all the upcoming exercises.
+
 
 # Exercise4
 
