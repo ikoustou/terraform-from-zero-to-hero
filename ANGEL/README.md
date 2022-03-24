@@ -10,6 +10,7 @@ Of course later on, you will copy and paste the modules (I asked you to write th
 3.  Try to understand which arguments are neccessary for the module definition.
 
 # Exercise2
+Good job Angel. You split the stages and you understood the point of this exercise. Keep up the good work!
 
 # Exercise3
 
