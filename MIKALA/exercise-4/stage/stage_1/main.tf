@@ -15,7 +15,6 @@ module "stage_1" {
     sg_name                      = var.sg_name
     sg_description               = var.sg_description
     ingress                      = var.ingress
-    egress                       = var.egress
     sg_tags                      = var.sg_tags
     ami                          = var.ami
     instance_type                = var.instance_type

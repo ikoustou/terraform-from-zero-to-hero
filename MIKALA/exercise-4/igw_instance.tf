@@ -20,7 +20,6 @@ module "security_group" {
   description = var.sg_description
   vpc_id      = module.vpc.id
   ingress     = var.ingress
-  egress      = var.egress
   tags        = var.sg_tags
 }
 

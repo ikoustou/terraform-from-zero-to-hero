@@ -71,19 +71,12 @@ variable "sg_description" {
   description = "Security group description."
 }
 
-variable "ingress_from_port" {
-  type        = string
-  description = "Start port."
-}
-
-variable "ingress_to_port" {
-  type        = string
-  description = "End range port."
-}
-
-variable "ingress_protocol" {
-  type        = string
-  description = "Protocol."
+variable "ingress" {  
+  type      = list(object({    
+    from_port = number
+    to_port   = number
+    protocol  = string  }))
+  description = "Configuration block for ingress rules."
 }
 
 variable "sg_tags" {
