@@ -14,7 +14,7 @@ module "route" {
 }
 
 module "security_group" {
-  source      = "./modules/security_group"
+  source         = "./modules/security_group"
 
   name           = var.sg_name
   description    = var.sg_description
@@ -27,10 +27,12 @@ module "security_group" {
 }
 
 module "instance" {
-  source        = "./modules/instance"
+  source                 = "./modules/instance"
 
-  ami           = var.ami
-  instance_type = var.instance_type
-  key_name      = var.key_name
-  tags          = var.instance_tags
+  ami                     = var.ami
+  instance_type           = var.instance_type
+  key_name                = var.key_name
+  subnet_id               = module.public.id
+  vpc_security_group_ids  = {module.security_group.id}
+  tags                    = var.instance_tags
 }
