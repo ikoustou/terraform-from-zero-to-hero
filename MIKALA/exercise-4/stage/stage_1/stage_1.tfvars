@@ -33,8 +33,8 @@ public_route_dest_cidr_block = "0.0.0.0/0"
 
 sg_name           = "E4 Security Group"
 sg_description    = "Allows inbound traffic ping from all CIDRs."
-in_from_port = 0
-in_to_port   = 0
+in_from_port = -1
+in_to_port   = -1
 in_protocol  = "icmp"
 in_cidr_blocks = ["0.0.0.0/0"]
 sg_tags            = {

@@ -33,7 +33,7 @@ module "private" {
 
   vpc_id                   = module.vpc.id
   cidr_block               = var.private_cidr_block
-  pmap_public_ip_on_launch = private_map_public_ip_on_launch
+  map_public_ip_on_launch = var.private_map_public_ip_on_launch
   tags                     = var.private_subnet_tags
 }
 
