@@ -71,14 +71,19 @@ variable "sg_description" {
   description = "Security group description."
 }
 
-variable "ingress" {
-  type        = map
-  description = "Configuration block for ingress rules."
+variable "ingress_from_port" {
+  type        = string
+  description = "Start port."
 }
 
-variable "egress" {
-  type        = map
-  description = "Configuration block for egress rules."
+variable "ingress_to_port" {
+  type        = string
+  description = "End range port."
+}
+
+variable "ingress_protocol" {
+  type        = string
+  description = "Protocol."
 }
 
 variable "sg_tags" {
