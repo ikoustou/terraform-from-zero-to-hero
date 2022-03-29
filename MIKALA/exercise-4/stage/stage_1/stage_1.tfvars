@@ -35,6 +35,12 @@ ingress = {
   from_port = 0
   to_port   = 0
   protocol  = "-1"
+  cidr_blocks = ["0.0.0.0/0"]
+  description = []
+  ipv6_cidr_blocks = []
+  prefix_list_ids = []
+  security_groups = []
+  self = false
 }
 sg_tags            = {
   "Name" = "e4_security_group"
