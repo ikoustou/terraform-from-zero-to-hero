@@ -13,19 +13,24 @@ variable "vpc_id" {
   description = "VPC ID."
 }
 
-variable "ingress" {  
-  type      = list(object({    
-    from_port        = number
-    to_port          = number
-    protocol         = string
-    cidr_blocks      = list(string)
-    description      = string
-    ipv6_cidr_blocks = list(string)
-    prefix_list_ids  = list(string)
-    security_groups  = list(string)
-    self             = bool
-  }))
-  description = "Configuration block for ingress rules."
+variable "in_from_port" {
+  type        = number
+  description = "Start port."
+}
+
+variable "in_to_port" {
+  type        = number
+  description = "End range port."
+}
+
+variable "in_protocol" {
+  type        = string
+  description = "Protocol."
+}
+
+variable "in_cidr_blocks" {
+  type        = list(string)
+  description = "List of CIDR blocks."
 }
 
 variable "tags" {

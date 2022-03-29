@@ -14,7 +14,10 @@ module "stage_1" {
     public_route_dest_cidr_block = var.public_route_dest_cidr_block
     sg_name                      = var.sg_name
     sg_description               = var.sg_description
-    ingress                      = var.ingress
+    in_from_port                 = var.in_from_port
+    in_to_port                   = var.in_to_port
+    in_protocol                  = var.in_protocol
+    in_cidr_blocks               = var.in_cidr_blocks
     sg_tags                      = var.sg_tags
     ami                          = var.ami
     instance_type                = var.instance_type

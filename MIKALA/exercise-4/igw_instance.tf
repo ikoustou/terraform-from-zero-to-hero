@@ -16,11 +16,14 @@ module "route" {
 module "security_group" {
   source      = "./modules/security_group"
 
-  name        = var.sg_name
-  description = var.sg_description
-  vpc_id      = module.vpc.id
-  ingress     = var.ingress
-  tags        = var.sg_tags
+  name           = var.sg_name
+  description    = var.sg_description
+  vpc_id         = module.vpc.id
+  in_from_port   = var.in_from_port
+  in_to_port     = var.in_to_port
+  in_protocol    = var.in_protocol
+  in_cidr_blocks = var.in_cidr_blocks
+  tags           = var.sg_tags
 }
 
 module "instance" {
