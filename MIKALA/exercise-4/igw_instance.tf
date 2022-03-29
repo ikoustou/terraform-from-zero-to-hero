@@ -33,6 +33,6 @@ module "instance" {
   instance_type           = var.instance_type
   key_name                = var.key_name
   subnet_id               = module.public.id
-  vpc_security_group_ids  = {module.security_group.id}
+  vpc_security_group_ids  = [module.security_group.id]
   tags                    = var.instance_tags
 }

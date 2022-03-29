@@ -6,6 +6,7 @@ vpc_tags       = {
 }
 
 public_cidr_block  = "10.0.0.0/24"
+public_map_public_ip_on_launch = true
 public_subnet_tags = {
   "Name" = "e4_public_subnet"
 }
@@ -15,6 +16,7 @@ rt-public_tags = {
 }
 
 private_cidr_block  = "10.0.1.0/24"
+private_map_public_ip_on_launch = false
 private_subnet_tags = {
   "Name" = "e4_private_subnet"
 }

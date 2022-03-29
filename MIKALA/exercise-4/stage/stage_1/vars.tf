@@ -23,6 +23,11 @@ variable "public_cidr_block" {
   description = "The IPv4 CIDR block for the subnet."
 }
 
+variable "public_map_public_ip_on_launch" {
+  type        = bool
+  description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address."
+}
+
 variable "public_subnet_tags" {
   type        = map
   description = "A map of tags to assign to the resource."
@@ -36,6 +41,11 @@ variable "rt-public_tags" {
 variable "private_cidr_block" {
   type        = string
   description = "The IPv4 CIDR block for the subnet."
+}
+
+variable "private_map_public_ip_on_launch" {
+  type        = bool
+  description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address."
 }
 
 variable "private_subnet_tags" {

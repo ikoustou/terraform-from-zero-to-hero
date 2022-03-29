@@ -6,11 +6,12 @@ module "vpc" {
 }
 
 module "public" {
-  source     = "./modules/subnet"
+  source                  = "./modules/subnet"
 
-  vpc_id     = module.vpc.id
-  cidr_block = var.public_cidr_block
-  tags       = var.public_subnet_tags
+  vpc_id                  = module.vpc.id
+  cidr_block              = var.public_cidr_block
+  map_public_ip_on_launch = var.public_map_public_ip_on_launch
+  tags                    = var.public_subnet_tags
 }
 
 module "rt-public" {
@@ -28,11 +29,12 @@ module "rt-public_association" {
 }
 
 module "private" {
-  source     = "./modules/subnet"
+  source                   = "./modules/subnet"
 
-  vpc_id     = module.vpc.id
-  cidr_block = var.private_cidr_block
-  tags       = var.private_subnet_tags
+  vpc_id                   = module.vpc.id
+  cidr_block               = var.private_cidr_block
+  pmap_public_ip_on_launch = private_map_public_ip_on_launch
+  tags                     = var.private_subnet_tags
 }
 
 module "rt-private" {
