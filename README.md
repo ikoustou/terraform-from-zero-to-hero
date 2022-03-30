@@ -152,7 +152,11 @@ data "aws_ami" "amazon" {
 ```
 
 
-
+## Exercise-6
+Create 2 VPCs, each one with two subnets, route-tables. For the first VPC1 associate an internet gateway and a default route from the public route table. Launch two EC2 instances on each VPC. On the First VPC launch it on the public subnet and allow ssh and ping with Security Groups. On the second VPC it doesn't matter, allow ping with SG.
+Create a VPC peering between the two VPCs. Add the correct routes to send traffic to the other VPC CIDR and as destination the VPC peering endpoint.
+Test the infrastructure by ssh on the first instance of VPC1 and pinging the second instance on VPC2.
+It is similar to Exercise-5. Here, we use 2 VPCs instead of one.
 
 
 

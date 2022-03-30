@@ -55,8 +55,13 @@ You did realy well. I have only one comment:
 ## Comments
 The folder "example" or "stage" (the name it doesn't matter) should always be present. It was not only for exercise2 but for all the upcoming exercises.
 
-
 # Exercise4
+## Comments
+Good job. I was able to get replies using ping
+Read the comments for this exercise on the outer README md file. I want you to understand how we can declare an optional variable.
+### Optional variables
+Optional Variables have as **default** value **null**.
+Later on we will be using the "transit gateway id " instead of "gateway_id". How can you solve this problem? Are you going to modify the route module everytime? the answer is no. you can define all the possible destinations as optional.
 
 # Exercise5
 
