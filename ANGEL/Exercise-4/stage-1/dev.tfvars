@@ -29,7 +29,6 @@ ami_id = "ami-0c02fb55956c7d316"
 instance_type = "t2.micro"
 key_name = "ec2_exercise_name"
 map_public_ip_on_launch = true
-do_not_map_public_ip_on_launch = false
 security_group_tags    = {
   "Name"  = "Exercise-4-Security-Groups"
 }

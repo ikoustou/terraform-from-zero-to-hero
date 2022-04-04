@@ -20,7 +20,6 @@ module "stage_1" {
   instance_type = var.instance_type
   key_name = var.key_name
   map_public_ip_on_launch = var.map_public_ip_on_launch
-  do_not_map_public_ip_on_launch = var.do_not_map_public_ip_on_launch
   security_group_tags = var.security_group_tags
   ec2_tags = var.ec2_tags
 }

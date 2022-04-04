@@ -28,11 +28,6 @@ variable "map_public_ip_on_launch" {
   description = "Used to decide if a public ip is assigned to instances in the subnet"
 }
 
-variable "do_not_map_public_ip_on_launch" {
-  type = bool
-  description = "Used to decide if a public ip is assigned to instances in the subnet"
-}
-
 variable "subnet_public_tags" {
   type        = map
   description = "Tags for AWS Resource"

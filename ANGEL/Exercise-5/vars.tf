@@ -3,6 +3,7 @@ variable "region" {
   description = "AWS region to deploy resources"
 }
 
+#VPC Vars 
 variable "vpc_cidr_block" {
   type = string
   description = "CIDR for VPC"
@@ -13,14 +14,10 @@ variable "vpc_tags" {
   description = "Tags for AWS Resource"
 }
 
+# Public Subnet
 variable "subnet_public_cidr_block" {
   type = string
   description = "CIDR for first subnet"
-}
-
-variable "subnet_private_cidr_block" {
-  type = string
-  description = "CIDR for second subnet"
 }
 
 variable "map_public_ip_on_launch" {
@@ -33,31 +30,43 @@ variable "subnet_public_tags" {
   description = "Tags for AWS Resource"
 }
 
+#Private Subnet
+variable "subnet_private_cidr_block" {
+  type = string
+  description = "CIDR for second subnet"
+}
+
 variable "subnet_private_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
+
+#Route Table Public
 variable "route_table_public_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
+#Route Table Private
 variable "route_table_private_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
+# Internet GateWay
 variable "internet_gateway_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
+#Route
 variable "destination_cidr_block" {
   type        = string
   description = "Public route for ig"
 }
 
+#SG Ping Public
 variable "from_port" {
   type = string
   description = "security group from port"
@@ -78,11 +87,44 @@ variable "sg_cidr_blocks" {
   description = "List of CIDR blocks."
 }
 
-variable "ami_id" {
-  type = string
-  description = "ami id"
+variable "security_group_tags" {
+  type        = map
+  description = "Tags for AWS Resource"
 }
 
+# Security Group SSH Public
+variable "from_port_ssh_public" {
+  type = string
+  description = "security group from port"
+}
+
+variable "to_port_ssh_public" {
+  type = string
+  description = "security group to port"
+}
+
+variable "protocol_ssh_public" {
+  type = string
+  description = "security group protocol"
+}
+
+variable "security_group_tags_ssh_public" {
+  type        = map
+  description = "Tags for AWS Resource"
+}
+
+# Security Group Ping Private
+variable "sg_cidr_blocks_private" {
+  type = list(string)
+  description = "List of CIDR blocks."
+}
+
+variable "security_group_tags_private" {
+  type        = map
+  description = "Tags for AWS Resource"
+}
+
+#EC2 Public
 variable "instance_type" {
   type = string
   description = "instance type"
@@ -93,12 +135,13 @@ variable "key_name" {
   description = "key name"
 }
 
-variable "security_group_tags" {
+variable "ec2_tags_public" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
-variable "ec2_tags" {
+# EC2 Private
+variable "ec2_tags_private" {
   type        = map
   description = "Tags for AWS Resource"
 }
