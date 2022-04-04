@@ -55,7 +55,7 @@ security_group_tags_ssh_public = {
 }
 
 #SG Ping Private
-sg_cidr_blocks_private = [ "10.0.1.0/24" ]
+sg_cidr_blocks_private = [ "0.0.0.0/0" ]
 security_group_tags_private = {
   "Name"  = "Exercise-5-Security-Groups-Ping-Private"
 }
