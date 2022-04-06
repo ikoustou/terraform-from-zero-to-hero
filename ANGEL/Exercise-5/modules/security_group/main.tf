@@ -1,5 +1,4 @@
 resource "aws_security_group" "security_group" {
-  name        = "allow_icmp"
   description = "manages inbound traffic"
   vpc_id      = var.vpc_id
   ingress {
