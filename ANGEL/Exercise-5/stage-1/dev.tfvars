@@ -62,7 +62,7 @@ security_group_tags_private = {
 
 #EC2 Public
 instance_type = "t2.micro"
-key_name = "ec2_exercise_name"
+key_name = "ec2_exercise"
 ec2_tags_public   = {
   "Name"  = "Exercise-5-EC2-Public"
 }
