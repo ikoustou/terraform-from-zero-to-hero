@@ -9,7 +9,7 @@ variable "cidr_block" {
 }
 
 variable "map_public_ip_on_launch" {
-  default     = fasle
+  default     = false
   type        = bool
   description = "Specify true to indicate that instances launched into the subnet should be assigned a public IP address."
 }

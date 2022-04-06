@@ -37,7 +37,7 @@ in_pub_icmp_to_port      = -1
 in_pub_icmp_protocol     = "icmp"
 in_pub_icmp_cidr_blocks  = ["0.0.0.0/0"]
 sg_pub_icmp_tags         = {
-  "Name" = "e5_pub_icmp_sg
+  "Name" = "e5_pub_icmp_sg"
 }
 
 sg_priv_icmp_name               = "E5 Private ICMP Security Group"
@@ -47,17 +47,17 @@ in_priv_icmp_to_port            = -1
 in_priv_icmp_protocol           = "icmp"
 in_priv_icmp_cidr_blocks        = ["10.0.0.0/24"]
 sg_priv_icmp_tags               = {
-  "Name" = "e5_priv_icmp_sg
+  "Name" = "e5_priv_icmp_sg"
 }
 
 sg_pub_ssh_name                 = "E5 Public SSH Security Group"
 sg_pub_ssh_description          = "Allows inbound traffic SSH from all CIDRs."
-in_pub_ssh_from_port            = -1
-in_pub_ssh_to_port              = -1
-in_pub_ssh_protocol             = "ssh"
+in_pub_ssh_from_port            = 22
+in_pub_ssh_to_port              = 22
+in_pub_ssh_protocol             = "tcp"
 in_pub_ssh_cidr_blocks          = ["0.0.0.0/0"]
 sg_pub_ssh_tags                 = {
-  "Name" = "e5_priv_icmp_sg
+  "Name" = "e5_priv_icmp_sg"
 }
 
 i_public_type                   = "t2.micro"
