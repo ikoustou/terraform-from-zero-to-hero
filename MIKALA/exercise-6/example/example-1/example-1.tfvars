@@ -36,7 +36,7 @@ rt1-pub_tags                    = {
 rt1-priv_tags                   = {
   "Name" = "e6_rt1_private"
 }
-rt1-pub_tags                    = {
+rt2-pub_tags                    = {
   "Name" = "e6_rt2_public"
 }
 rt2-priv_tags                   = {

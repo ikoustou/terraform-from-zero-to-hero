@@ -1,9 +1,9 @@
 # Peering Connection
 module "vpc-pc" {
-  source        = "./modules/vpc_peering_connection"
+  source        = "./modules/peering_connection"
 
-  peer_vpc_id   = aws_vpc.vpc2.id
-  vpc_id        = aws_vpc.vpc1.id
+  peer_vpc_id   = module.vpc2.id
+  vpc_id        = module.vpc1.id
   auto_accept   = var.auto_accept
   tags          = var.vpc-pc_tags
 }

@@ -85,7 +85,7 @@ module "rt2-pub" {
   source = "./modules/route_table"
 
   vpc_id = module.vpc2.id
-  tags   = var.rt1-pub_tags
+  tags   = var.rt2-pub_tags
 }
 
 module "rt2-pub-rta" {

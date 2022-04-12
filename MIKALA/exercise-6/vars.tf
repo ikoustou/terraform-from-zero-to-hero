@@ -88,7 +88,7 @@ variable "rt1-priv_tags" {
   description = "A map of tags to assign to the resource."
 }
 
-variable "rt1-pub_tags" {
+variable "rt2-pub_tags" {
   type        = map
   description = "A map of tags to assign to the resource."
 }
@@ -212,7 +212,7 @@ variable "in_sg2_icmp_protocol" {
   description = "Protocol."
 }
 
-variable "in_sg1_sg2_icmp_blocks" {
+variable "in_sg2_icmp_cidr_blocks" {
   type        = list(string)
   description = "List of CIDR blocks."
 }

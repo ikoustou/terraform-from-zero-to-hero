@@ -17,7 +17,7 @@ module "stage_1" {
   sn2_priv_tags                   = var.sn2_priv_tags
   rt1-pub_tags                    = var.rt1-pub_tags
   rt1-priv_tags                   = var.rt1-priv_tags
-  rt1-pub_tags                    = var.rt1-pub_tags
+  rt2-pub_tags                    = var.rt2-pub_tags
   rt2-priv_tags                   = var.rt2-priv_tags
   igw_tags                        = var.igw_tags
   default_dest_cidr_block         = var.default_dest_cidr_block
