@@ -126,3 +126,17 @@ module "route_peering2" {
   destination_cidr_block = var.vpc_cidr_block
   vpc_peering_connection_id = module.vpc_peering.instance.id
 }
+
+module "route_peering3" {
+  source = "./modules/route"
+  route_table_id = module.route_table_private.instance.id
+  destination_cidr_block = var.vpc_cidr_block2
+  vpc_peering_connection_id = module.vpc_peering.instance.id
+}
+
+module "route_peering4" {
+  source = "./modules/route"
+  route_table_id = module.route_table_private2.instance.id
+  destination_cidr_block = var.vpc_cidr_block
+  vpc_peering_connection_id = module.vpc_peering.instance.id
+}
