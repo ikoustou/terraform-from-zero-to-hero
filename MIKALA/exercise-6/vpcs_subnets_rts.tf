@@ -22,6 +22,10 @@ module "subnet1_pub" {
   cidr_block              = var.sn1_pub_cidr_block
   map_public_ip_on_launch = var.public_map_public_ip_on_launch
   tags                    = var.sn1_pub_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "subnet1_priv" {
@@ -31,6 +35,10 @@ module "subnet1_priv" {
   cidr_block              = var.sn1_priv_cidr_block
   map_public_ip_on_launch = var.public_map_public_ip_on_launch
   tags                    = var.sn1_priv_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "subnet2_pub" {
@@ -40,6 +48,10 @@ module "subnet2_pub" {
   cidr_block              = var.sn2_pub_cidr_block
   map_public_ip_on_launch = var.public_map_public_ip_on_launch
   tags                    = var.sn2_pub_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "subnet2_priv" {
@@ -49,6 +61,10 @@ module "subnet2_priv" {
   cidr_block              = var.sn2_priv_cidr_block
   map_public_ip_on_launch = var.public_map_public_ip_on_launch
   tags                    = var.sn2_priv_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 
@@ -58,6 +74,10 @@ module "rt1-pub" {
 
   vpc_id = module.vpc1.id
   tags   = var.rt1-pub_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "rt1-pub-rta" {
@@ -65,6 +85,11 @@ module "rt1-pub-rta" {
 
   subnet_id      = module.subnet1_pub.id
   route_table_id = module.rt1-pub.id
+
+  depends_on = [
+    module.subnet1_pub,
+    module.rt1-pub
+  ]
 }
 
 module "rt1-priv" {
@@ -72,6 +97,10 @@ module "rt1-priv" {
 
   vpc_id = module.vpc1.id
   tags   = var.rt1-priv_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "rt1-priv-rta" {
@@ -79,6 +108,11 @@ module "rt1-priv-rta" {
 
   subnet_id      = module.subnet1_priv.id
   route_table_id = module.rt1-priv.id
+
+  depends_on = [
+    module.subnet1_priv,
+    module.rt1-priv
+  ]
 }
 
 module "rt2-pub" {
@@ -86,6 +120,10 @@ module "rt2-pub" {
 
   vpc_id = module.vpc2.id
   tags   = var.rt2-pub_tags
+
+  depends_on = [
+    module.vpc2
+  ]
 }
 
 module "rt2-pub-rta" {
@@ -93,6 +131,11 @@ module "rt2-pub-rta" {
 
   subnet_id      = module.subnet2_pub.id
   route_table_id = module.rt2-pub.id
+
+  depends_on = [
+    module.subnet2_pub,
+    module.rt2-pub
+  ]
 }
 
 module "rt2-priv" {
@@ -100,6 +143,10 @@ module "rt2-priv" {
 
   vpc_id = module.vpc2.id
   tags   = var.rt2-priv_tags
+
+  depends_on = [
+    module.vpc2
+  ]
 }
 
 module "rt2-priv-rta" {
@@ -107,4 +154,9 @@ module "rt2-priv-rta" {
 
   subnet_id      = module.subnet2_priv.id
   route_table_id = module.rt2-priv.id
+
+  depends_on = [
+    module.subnet2_priv,
+    module.rt2-priv
+  ]
 }
