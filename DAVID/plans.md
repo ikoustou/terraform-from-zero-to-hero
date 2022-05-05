@@ -1,11 +1,19 @@
-# Exercise 5:
+# Exercise 6:
+
+![exercise 6 validation of ssh and ping](images/excercise6validation.png)
 
 ```terraform
+Davids-Mac-Pro-4:exercise-6-example davidpalacios$ terraform apply -var-file=dev.tfvars
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+symbols:
+  + create
+
 Terraform will perform the following actions:
 
-  # module.TRN-5-example.module.ec2_private.aws_instance.ec2 will be created
+  # module.exercise_6_example.module.ec2_private.aws_instance.ec2 will be created
   + resource "aws_instance" "ec2" {
-      + ami                                  = "ami-059e474a5b37e133b"
+      + ami                                  = "ami-06eecef118bbf9259"
       + arn                                  = (known after apply)
       + associate_public_ip_address          = (known after apply)
       + availability_zone                    = (known after apply)
@@ -21,7 +29,7 @@ Terraform will perform the following actions:
       + instance_type                        = "t2.micro"
       + ipv6_address_count                   = (known after apply)
       + ipv6_addresses                       = (known after apply)
-      + key_name                             = "terraform-training"
+      + key_name                             = "david-us-east-1-key"
       + monitoring                           = (known after apply)
       + outpost_arn                          = (known after apply)
       + password_data                        = (known after apply)
@@ -101,9 +109,9 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.TRN-5-example.module.ec2_public.aws_instance.ec2 will be created
+  # module.exercise_6_example.module.ec2_public.aws_instance.ec2 will be created
   + resource "aws_instance" "ec2" {
-      + ami                                  = "ami-059e474a5b37e133b"
+      + ami                                  = "ami-06eecef118bbf9259"
       + arn                                  = (known after apply)
       + associate_public_ip_address          = (known after apply)
       + availability_zone                    = (known after apply)
@@ -119,7 +127,7 @@ Terraform will perform the following actions:
       + instance_type                        = "t2.micro"
       + ipv6_address_count                   = (known after apply)
       + ipv6_addresses                       = (known after apply)
-      + key_name                             = "terraform-training"
+      + key_name                             = "david-us-east-1-key"
       + monitoring                           = (known after apply)
       + outpost_arn                          = (known after apply)
       + password_data                        = (known after apply)
@@ -199,7 +207,7 @@ Terraform will perform the following actions:
         }
     }
 
-  # module.TRN-5-example.module.igw.aws_internet_gateway.igw will be created
+  # module.exercise_6_example.module.igw.aws_internet_gateway.igw will be created
   + resource "aws_internet_gateway" "igw" {
       + arn      = (known after apply)
       + id       = (known after apply)
@@ -213,7 +221,59 @@ Terraform will perform the following actions:
       + vpc_id   = (known after apply)
     }
 
-  # module.TRN-5-example.module.route.aws_route.route will be created
+  # module.exercise_6_example.module.private_route_1.aws_route.route will be created
+  + resource "aws_route" "route" {
+      + destination_cidr_block    = "10.1.0.0/16"
+      + id                        = (known after apply)
+      + instance_id               = (known after apply)
+      + instance_owner_id         = (known after apply)
+      + network_interface_id      = (known after apply)
+      + origin                    = (known after apply)
+      + route_table_id            = (known after apply)
+      + state                     = (known after apply)
+      + vpc_peering_connection_id = (known after apply)
+    }
+
+  # module.exercise_6_example.module.private_route_2.aws_route.route will be created
+  + resource "aws_route" "route" {
+      + destination_cidr_block    = "10.0.0.0/16"
+      + id                        = (known after apply)
+      + instance_id               = (known after apply)
+      + instance_owner_id         = (known after apply)
+      + network_interface_id      = (known after apply)
+      + origin                    = (known after apply)
+      + route_table_id            = (known after apply)
+      + state                     = (known after apply)
+      + vpc_peering_connection_id = (known after apply)
+    }
+
+  # module.exercise_6_example.module.public_route_1.aws_route.route will be created
+  + resource "aws_route" "route" {
+      + destination_cidr_block    = "10.1.0.0/16"
+      + id                        = (known after apply)
+      + instance_id               = (known after apply)
+      + instance_owner_id         = (known after apply)
+      + network_interface_id      = (known after apply)
+      + origin                    = (known after apply)
+      + route_table_id            = (known after apply)
+      + state                     = (known after apply)
+      + vpc_peering_connection_id = (known after apply)
+    }
+
+  # module.exercise_6_example.module.public_route_2.aws_route.route will be created
+  + resource "aws_route" "route" {
+      + destination_cidr_block    = "10.0.0.0/16"
+      + id                        = (known after apply)
+      + instance_id               = (known after apply)
+      + instance_owner_id         = (known after apply)
+      + network_interface_id      = (known after apply)
+      + origin                    = (known after apply)
+      + route_table_id            = (known after apply)
+      + state                     = (known after apply)
+      + vpc_peering_connection_id = (known after apply)
+    }
+
+  # module.exercise_6_example.module.route.aws_route.route will be created
   + resource "aws_route" "route" {
       + destination_cidr_block = "0.0.0.0/0"
       + gateway_id             = (known after apply)
@@ -226,7 +286,7 @@ Terraform will perform the following actions:
       + state                  = (known after apply)
     }
 
-  # module.TRN-5-example.module.route_table_private.aws_route_table.route_table will be created
+  # module.exercise_6_example.module.route_table_private.aws_route_table.route_table will be created
   + resource "aws_route_table" "route_table" {
       + arn              = (known after apply)
       + id               = (known after apply)
@@ -242,7 +302,23 @@ Terraform will perform the following actions:
       + vpc_id           = (known after apply)
     }
 
-  # module.TRN-5-example.module.route_table_public.aws_route_table.route_table will be created
+  # module.exercise_6_example.module.route_table_private_2.aws_route_table.route_table will be created
+  + resource "aws_route_table" "route_table" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = []
+      + tags             = {
+          + "Name" = "rt-private-2"
+        }
+      + tags_all         = {
+          + "Name" = "rt-private-2"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.exercise_6_example.module.route_table_public.aws_route_table.route_table will be created
   + resource "aws_route_table" "route_table" {
       + arn              = (known after apply)
       + id               = (known after apply)
@@ -258,21 +334,51 @@ Terraform will perform the following actions:
       + vpc_id           = (known after apply)
     }
 
-  # module.TRN-5-example.module.rt_association_private.aws_route_table_association.rt_association will be created
+  # module.exercise_6_example.module.route_table_public_2.aws_route_table.route_table will be created
+  + resource "aws_route_table" "route_table" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route            = []
+      + tags             = {
+          + "Name" = "rt-public-2"
+        }
+      + tags_all         = {
+          + "Name" = "rt-public-2"
+        }
+      + vpc_id           = (known after apply)
+    }
+
+  # module.exercise_6_example.module.rt_association_private.aws_route_table_association.rt_association will be created
   + resource "aws_route_table_association" "rt_association" {
       + id             = (known after apply)
       + route_table_id = (known after apply)
       + subnet_id      = (known after apply)
     }
 
-  # module.TRN-5-example.module.rt_association_public.aws_route_table_association.rt_association will be created
+  # module.exercise_6_example.module.rt_association_private_2.aws_route_table_association.rt_association will be created
   + resource "aws_route_table_association" "rt_association" {
       + id             = (known after apply)
       + route_table_id = (known after apply)
       + subnet_id      = (known after apply)
     }
 
-  # module.TRN-5-example.module.security_group_ping_private.aws_security_group.security_group will be created
+  # module.exercise_6_example.module.rt_association_public.aws_route_table_association.rt_association will be created
+  + resource "aws_route_table_association" "rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.exercise_6_example.module.rt_association_public_2.aws_route_table_association.rt_association will be created
+  + resource "aws_route_table_association" "rt_association" {
+      + id             = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # module.exercise_6_example.module.security_group_ping_private.aws_security_group.security_group will be created
   + resource "aws_security_group" "security_group" {
       + arn                    = (known after apply)
       + description            = "security_group"
@@ -315,7 +421,7 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-  # module.TRN-5-example.module.security_group_ping_public.aws_security_group.security_group will be created
+  # module.exercise_6_example.module.security_group_ping_public.aws_security_group.security_group will be created
   + resource "aws_security_group" "security_group" {
       + arn                    = (known after apply)
       + description            = "security_group"
@@ -358,7 +464,7 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-  # module.TRN-5-example.module.security_group_ssh.aws_security_group.security_group will be created
+  # module.exercise_6_example.module.security_group_ssh.aws_security_group.security_group will be created
   + resource "aws_security_group" "security_group" {
       + arn                    = (known after apply)
       + description            = "security_group"
@@ -401,7 +507,7 @@ Terraform will perform the following actions:
       + vpc_id                 = (known after apply)
     }
 
-  # module.TRN-5-example.module.subnet_private.aws_subnet.subnet will be created
+  # module.exercise_6_example.module.subnet_private.aws_subnet.subnet will be created
   + resource "aws_subnet" "subnet" {
       + arn                                            = (known after apply)
       + assign_ipv6_address_on_creation                = false
@@ -426,7 +532,32 @@ Terraform will perform the following actions:
       + vpc_id                                         = (known after apply)
     }
 
-  # module.TRN-5-example.module.subnet_public.aws_subnet.subnet will be created
+  # module.exercise_6_example.module.subnet_private_2.aws_subnet.subnet will be created
+  + resource "aws_subnet" "subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = (known after apply)
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.1.1.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "private-subnet-2"
+        }
+      + tags_all                                       = {
+          + "Name" = "private-subnet-2"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.exercise_6_example.module.subnet_public.aws_subnet.subnet will be created
   + resource "aws_subnet" "subnet" {
       + arn                                            = (known after apply)
       + assign_ipv6_address_on_creation                = false
@@ -451,7 +582,32 @@ Terraform will perform the following actions:
       + vpc_id                                         = (known after apply)
     }
 
-  # module.TRN-5-example.module.vpc.aws_vpc.vpc will be created
+  # module.exercise_6_example.module.subnet_public_2.aws_subnet.subnet will be created
+  + resource "aws_subnet" "subnet" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = (known after apply)
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.1.0.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = true
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + tags                                           = {
+          + "Name" = "public-subnet-2"
+        }
+      + tags_all                                       = {
+          + "Name" = "public-subnet-2"
+        }
+      + vpc_id                                         = (known after apply)
+    }
+
+  # module.exercise_6_example.module.vpc.aws_vpc.vpc will be created
   + resource "aws_vpc" "vpc" {
       + arn                                  = (known after apply)
       + cidr_block                           = "10.0.0.0/16"
@@ -478,5 +634,79 @@ Terraform will perform the following actions:
         }
     }
 
-Plan: 14 to add, 0 to change, 0 to destroy.
+  # module.exercise_6_example.module.vpc_2.aws_vpc.vpc will be created
+  + resource "aws_vpc" "vpc" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.1.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_classiclink                   = (known after apply)
+      + enable_classiclink_dns_support       = (known after apply)
+      + enable_dns_hostnames                 = (known after apply)
+      + enable_dns_support                   = true
+      + id                                   = (known after apply)
+      + instance_tenancy                     = "default"
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + tags                                 = {
+          + "Name" = "vpc"
+        }
+      + tags_all                             = {
+          + "Name" = "vpc"
+        }
+    }
+
+  # module.exercise_6_example.module.vpc_peering.aws_vpc_peering_connection.vpc_peering_connection will be created
+  + resource "aws_vpc_peering_connection" "vpc_peering_connection" {
+      + accept_status = (known after apply)
+      + id            = (known after apply)
+      + peer_owner_id = (known after apply)
+      + peer_region   = (known after apply)
+      + peer_vpc_id   = (known after apply)
+      + tags_all      = (known after apply)
+      + vpc_id        = (known after apply)
+
+      + accepter {
+          + allow_classic_link_to_remote_vpc = (known after apply)
+          + allow_remote_vpc_dns_resolution  = (known after apply)
+          + allow_vpc_to_remote_classic_link = (known after apply)
+        }
+
+      + requester {
+          + allow_classic_link_to_remote_vpc = (known after apply)
+          + allow_remote_vpc_dns_resolution  = (known after apply)
+          + allow_vpc_to_remote_classic_link = (known after apply)
+        }
+    }
+
+  # module.exercise_6_example.module.vpc_peering_accepter.aws_vpc_peering_connection_accepter.vpc_peering_connection_accepter will be created
+  + resource "aws_vpc_peering_connection_accepter" "vpc_peering_connection_accepter" {
+      + accept_status             = (known after apply)
+      + id                        = (known after apply)
+      + peer_owner_id             = (known after apply)
+      + peer_region               = (known after apply)
+      + peer_vpc_id               = (known after apply)
+      + tags_all                  = (known after apply)
+      + vpc_id                    = (known after apply)
+      + vpc_peering_connection_id = (known after apply)
+
+      + accepter {
+          + allow_classic_link_to_remote_vpc = (known after apply)
+          + allow_remote_vpc_dns_resolution  = (known after apply)
+          + allow_vpc_to_remote_classic_link = (known after apply)
+        }
+
+      + requester {
+          + allow_classic_link_to_remote_vpc = (known after apply)
+          + allow_remote_vpc_dns_resolution  = (known after apply)
+          + allow_vpc_to_remote_classic_link = (known after apply)
+        }
+    }
+
+Plan: 27 to add, 0 to change, 0 to destroy.
 ```
