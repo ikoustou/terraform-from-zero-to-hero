@@ -159,6 +159,18 @@ Test the infrastructure by ssh on the first instance of VPC1 and pinging the sec
 It is similar to Exercise-5. Here, we use 2 VPCs instead of one.
 
 
+## Exercise-7
+Same exercise like Ex-6 the difference will be transit gateway attachments instead of VPC-peering
+Create 2 VPCs, each one with two subnets, route-tables. For the first VPC1 associate an internet gateway (IGW) and a default route to point to the IGW from the public route table. 
+Create a Transit Gateway. Choose your ASN number (range from 64512 to 65534).
+Create Transit Gateway VPC attachments You can define "depends_on" sections to be sure that the VPC will be created before the TGW-VPC-attachment.
+Create two TGW-Route-Tables and associate each one with each TGW-VPC-attachment.
+Create routes inside the TGW-Route-Tables to send traffic going to the other VPC CIDR to its TGW-VPC-Attachment.
+Launch two EC2 instances on each VPC. On the First VPC launch it on the public subnet and allow ssh and ping with Security Groups. On the second VPC it doesn't matter. Create SGs to allow ping (ICMP).
+
+Test the infrastructure by ssh on the first instance of VPC1 and pinging the second instance on VPC2.
+It is similar to Exercise-6. Here, we use 2 VPCs peered via TGW instead of VPC peering.
+
 
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
