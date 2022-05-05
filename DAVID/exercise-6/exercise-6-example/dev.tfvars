@@ -45,12 +45,12 @@ cidr_blocks_ssh = [ "0.0.0.0/0" ]
 #ec2 public
 # ami_id_public = "ami-08b6f2a5c291246a0" # This is now optional since data block finds the ID automatically 
 instance_type_public = "t2.micro"
-key_name_public = "terraform-training" # SET YOUR OWN KEY PAIR HERE
+key_name_public = "david-us-east-1-key" # SET YOUR OWN KEY PAIR HERE
 
 #ec2 private
 # ami_id_private = "ami-08b6f2a5c291246a0" # This is now optional since data block finds the ID automatically 
 instance_type_private = "t2.micro"
-key_name_private = "terraform-training" # SET YOUR OWN KEY PAIR HERE
+key_name_private = "david-us-east-1-key" # SET YOUR OWN KEY PAIR HERE
 
 ###
 #VPC2
