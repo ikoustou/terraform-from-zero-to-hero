@@ -37,4 +37,9 @@ Optional Variables have as **default** value **null**.
 Later on we will be using the "transit gateway id " instead of "gateway_id". How can you solve this problem? Are you going to modify the route module everytime? the answer is no. you can define all the possible destinations as optional.
 
 # Exercise5
+Good job. I liked tha fact the you split the terraform files to "vpc-subnet-rt" and "igw-instance" related resources.
+
+# Exercise-6
+You did Great! 27 resources have been created and I managed to ping the second ec2 instance.
+![Ex-6](./Images/Ex-6.PNG)
 
