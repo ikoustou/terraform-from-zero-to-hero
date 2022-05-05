@@ -63,5 +63,11 @@ Read the comments for this exercise on the outer README md file. I want you to u
 Optional Variables have as **default** value **null**.
 Later on we will be using the "transit gateway id " instead of "gateway_id". How can you solve this problem? Are you going to modify the route module everytime? the answer is no. you can define all the possible destinations as optional.
 
-# Exercise5
+# Exercise6
+You are doing well.
+May I ask you why you created 4 instances instead of only 2?
+You also messed up the naming of instances. for example you named an instance "e6_vpc1_pub_ec2_instance" when actually belongs to VPC2 and it has ip 10.1.0.153.
+Also I didn't see the vpc-peering-accepter resource.
+I really liked the way you used the "depends_on" tool (for subnets, VPC peering etc.). Great job.
+
 
