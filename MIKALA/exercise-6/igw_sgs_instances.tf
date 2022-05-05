@@ -4,6 +4,10 @@ module "igw" {
 
   vpc_id = module.vpc1.id
   tags   = var.igw_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 
@@ -14,6 +18,11 @@ module "default-route" {
   route_table_id         = module.rt1-pub.id
   destination_cidr_block = var.default_dest_cidr_block
   gateway_id             = module.igw.id
+
+  depends_on = [
+    module.rt1-pub,
+    module.igw.id
+  ]
 }
 
 
@@ -29,6 +38,10 @@ module "sg1_icmp" {
   in_protocol    = var.in_sg1_icmp_protocol
   in_cidr_blocks = var.in_sg1_icmp_cidr_blocks
   tags           = var.sg1_icmp_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "sg1_ssh" {
@@ -42,6 +55,10 @@ module "sg1_ssh" {
   in_protocol    = var.in_sg1_ssh_protocol
   in_cidr_blocks = var.in_sg1_ssh_cidr_blocks
   tags           = var.sg1_ssh_tags
+
+  depends_on = [
+    module.vpc1
+  ]
 }
 
 module "sg2_icmp" {
@@ -55,6 +72,10 @@ module "sg2_icmp" {
   in_protocol    = var.in_sg2_icmp_protocol
   in_cidr_blocks = var.in_sg2_icmp_cidr_blocks
   tags           = var.sg2_icmp_tags
+
+  depends_on = [
+    module.vpc2
+  ]
 }
 
 # Instances
@@ -67,6 +88,12 @@ module "i1_pub" {
   subnet_id               = module.subnet1_pub.id
   vpc_security_group_ids  = [module.sg1_icmp.id,module.sg1_ssh.id]
   tags                    = var.i1_pub_tags
+
+  depends_on = [
+    module.subnet1_pub,
+    module.sg1_icmp,
+    module.sg1_ssh
+  ]
 }
 
 module "i1_priv" {
@@ -77,6 +104,11 @@ module "i1_priv" {
   subnet_id               = module.subnet1_priv.id
   vpc_security_group_ids  = [module.sg1_icmp.id]
   tags                    = var.i1_priv_tags
+
+  depends_on = [
+    module.subnet1_priv,
+    module.sg1_icmp
+  ]
 }
 
 module "i2_pub" {
@@ -87,6 +119,11 @@ module "i2_pub" {
   subnet_id               = module.subnet2_pub.id
   vpc_security_group_ids  = [module.sg2_icmp.id]
   tags                    = var.i1_pub_tags
+
+  depends_on = [
+    module.subnet2_pub,
+    module.sg2_icmp
+  ]
 }
 
 module "i2_priv" {
@@ -97,4 +134,9 @@ module "i2_priv" {
   subnet_id               = module.subnet2_priv.id
   vpc_security_group_ids  = [module.sg2_icmp.id]
   tags                    = var.i2_priv_tags
+
+  depends_on = [
+    module.subnet2_priv,
+    module.sg2_icmp
+  ]
 }
