@@ -70,4 +70,5 @@ You also messed up the naming of instances. for example you named an instance "e
 Also I didn't see the vpc-peering-accepter resource.
 I really liked the way you used the "depends_on" tool (for subnets, VPC peering etc.). Great job.
 
-
+# Exercise7
+Great progress!!! However where is the dev.tfvars file? without that I can't test your code. Could you please git push it as well? Thanks

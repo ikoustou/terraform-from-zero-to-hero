@@ -43,3 +43,27 @@ Good job. I liked tha fact the you split the terraform files to "vpc-subnet-rt" 
 You did Great! 27 resources have been created and I managed to ping the second ec2 instance.
 ![Ex-6](./Images/Ex-6.PNG)
 
+# Exercise-7
+I receive a plan of 28 resources to be created, great. I managed to ssh and ping the second EC2. Well done!
+```bash
+
+[ec2-user@ip-10-0-0-75 ~]$ ping -c4 10.1.1.123
+PING 10.1.1.123 (10.1.1.123) 56(84) bytes of data.
+64 bytes from 10.1.1.123: icmp_seq=1 ttl=254 time=2.13 ms
+64 bytes from 10.1.1.123: icmp_seq=2 ttl=254 time=1.18 ms
+64 bytes from 10.1.1.123: icmp_seq=3 ttl=254 time=1.27 ms
+64 bytes from 10.1.1.123: icmp_seq=4 ttl=254 time=1.16 ms
+
+--- 10.1.1.123 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 1.164/1.442/2.139/0.404 ms
+[ec2-user@ip-10-0-0-75 ~]$
+```
+
+## Comments
+1.  You gave both of your VPCs the same Name as tag. This doesn't help you when you check the console. Try "VPC1" and "VPC2" instead ;).
+2. Why did you name two of the subnets as "Public". Only the VPC1 has a public subnet because it has a route to the IGW. Remember that this is the only criteria to be characterized a subnet as "public".
+3. I would like you to be more helpful when it comes to subnet naming. Try "vpc1_subnet1", "vpc1_subnet2", "vpc2_subnet1" and "vpc2_subnet2" OR even concatenate the type of subnet at the end of the naming instead of giving all subnets the same name.
+4. This is not so important: You do not need SG to allow ping to the bastion (jumphost). Only SG to allow ping to the ec2 with the private only IP. Think about it! It is not a problem however.
+
+
