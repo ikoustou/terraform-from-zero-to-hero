@@ -30,7 +30,7 @@ And the second subnet would take the next available: 10.0.1.0/24
 Repeat the previous exercise. This time pay attention to use modules for everything and do not combine modules with resources inside the main.tf:
 *   Create to subfolders with the names: stage1 and stage2
 *   Remove eny terraform.state and any .terraform folder from the root level
-*   Go inside each stage and run terraform init to deploy the same resources in us-east-1 and us-east respectively
+*   Go inside each stage and run terraform init to deploy the same resources in us-east-1 and us-east-2 respectively
 *   Define a variable with name "region"
 *   Remove any default value from all variables
 *   Use a dev.tfvars file to give values for all variables
