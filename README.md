@@ -182,7 +182,7 @@ Create 2 TGW-route-tables, each one will be dedicated to a specific VPC attachme
 Create 2 TGW-route-table-associations with the TGW-VPC-Attachments
 Create static routes inside each of TGW-Route-Tables to cend traffic routed to the **other** VPC-CIDR with the right TGW-VPC-Attachment as the next hop (destination).
 
-Create routes inside the VPC route tables to send traffic with destination the other VPC_CIDR block to the TGW.
+Create routes inside the VPC route tables to send traffic with destination the other VPC_CIDR block to the TGW. **to make your life easier: create them via propagation defining a module for the resource "aws_ec2_transit_gateway_route_table_propagation" instead of creating static tgw-route via "aws_ec2_transit_gateway_route"**.
 
 
 Launch two EC2 instances on each VPC. On the First VPC launch it on the public subnet and allow ssh with Security Groups. On the second VPC it doesn't matter in which of the two subnets you will launch it but you have to allow Ping (icmp). 
