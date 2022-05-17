@@ -4,17 +4,22 @@ variable "region" {
 }
 
 #VPC Vars 
-variable "vpc_cidr_block" {
+variable "vpc1_cidr_block" {
   type = string
   description = "CIDR for VPC"
 }
 
-variable "vpc_cidr_block2" {
+variable "vpc2_cidr_block" {
   type = string
   description = "CIDR for VPC"
 }
 
-variable "vpc_tags" {
+variable "vpc1_tags" {
+  type        = map
+  description = "Tags for AWS Resource"
+}
+
+variable "vpc2_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
@@ -29,15 +34,15 @@ variable "availability_zone2" {
   type        = string
 }
 
-# Public Subnet
-variable "subnet_public_cidr_block" {
+
+variable "vpc1_subnet1_cidr_block" {
   type = string
-  description = "CIDR for first subnet"
+  description = "CIDR for vpc1 subnet1"
 }
 
-variable "subnet_public_cidr_block2" {
+variable "vpc1_subnet2_cidr_block" {
   type = string
-  description = "CIDR for first subnet"
+  description = "CIDR for vpc1 subnet2"
 }
 
 variable "map_public_ip_on_launch" {
@@ -45,36 +50,24 @@ variable "map_public_ip_on_launch" {
   description = "Used to decide if a public ip is assigned to instances in the subnet"
 }
 
-variable "subnet_public_tags" {
+variable "subnet_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }
 
 #Private Subnet
-variable "subnet_private_cidr_block" {
+variable "vpc2_subnet1_cidr_block" {
   type = string
-  description = "CIDR for second subnet"
+  description = "CIDR for vpc2 subnet1"
 }
 
-variable "subnet_private_cidr_block2" {
+variable "vpc2_subnet2_cidr_block" {
   type = string
-  description = "CIDR for second subnet"
+  description = "CIDR for vpc2 subnet2"
 }
 
-variable "subnet_private_tags" {
-  type        = map
-  description = "Tags for AWS Resource"
-}
-
-
-#Route Table Public
-variable "route_table_public_tags" {
-  type        = map
-  description = "Tags for AWS Resource"
-}
-
-#Route Table Private
-variable "route_table_private_tags" {
+#Route Table
+variable "route_table_tags" {
   type        = map
   description = "Tags for AWS Resource"
 }

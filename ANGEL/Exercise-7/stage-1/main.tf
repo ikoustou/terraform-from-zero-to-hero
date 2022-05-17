@@ -4,28 +4,23 @@ module "stage_1" {
   region = var.region
 
   #VPC
-  vpc_cidr_block = var.vpc_cidr_block
-  vpc_tags = var.vpc_tags
-  vpc_cidr_block2 = var.vpc_cidr_block2
+  vpc1_cidr_block = var.vpc1_cidr_block
+  vpc1_tags = var.vpc1_tags
+  vpc2_tags = var.vpc2_tags
+  vpc2_cidr_block = var.vpc2_cidr_block
   availability_zone1 = var.availability_zone1
   availability_zone2 = var.availability_zone2
 
-  #Public Subnet
-  subnet_public_cidr_block = var.subnet_public_cidr_block
-  subnet_public_tags = var.subnet_public_tags
+  #Subnets
+  subnet_tags = var.subnet_tags
   map_public_ip_on_launch = var.map_public_ip_on_launch
-  subnet_public_cidr_block2 = var.subnet_public_cidr_block2
-
-  #Private Subnet
-  subnet_private_cidr_block = var.subnet_private_cidr_block
-  subnet_private_tags = var.subnet_private_tags
-  subnet_private_cidr_block2 = var.subnet_private_cidr_block2
-
-  #Public Route Table
-  route_table_public_tags = var.route_table_public_tags
-
-  #Private Route Table
-  route_table_private_tags = var.route_table_private_tags
+  vpc1_subnet1_cidr_block = var.vpc1_subnet1_cidr_block
+  vpc1_subnet2_cidr_block = var.vpc1_subnet2_cidr_block
+  vpc2_subnet1_cidr_block = var.vpc2_subnet1_cidr_block
+  vpc2_subnet2_cidr_block = var.vpc2_subnet2_cidr_block
+ 
+  #Route Table
+  route_table_tags = var.route_table_tags
 
   #Internet Gateway
   internet_gateway_tags = var.internet_gateway_tags
