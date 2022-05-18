@@ -71,4 +71,7 @@ Also I didn't see the vpc-peering-accepter resource.
 I really liked the way you used the "depends_on" tool (for subnets, VPC peering etc.). Great job.
 
 # Exercise7
-Great progress!!! However where is the dev.tfvars file? without that I can't test your code. Could you please git push it as well? Thanks
+Great progress!!! 20 resources to be added.
+
+## Comments
+1. I was super impressed by the fact that you put tags everywhere. I just love it! I suppose it has to do with good habits you learned while working with your team.
