@@ -1,38 +1,34 @@
 region = "us-east-1"
 
 #VPC
-vpc_cidr_block = "10.0.0.0/16"
-vpc_tags            = {
-  "Name"  = "Exercise-7-VPC"
+vpc1_cidr_block = "10.0.0.0/16"
+vpc1_tags            = {
+  "Name"  = "Exercise-7-VPC1"
 }
-vpc_cidr_block2 = "10.1.0.0/16"
+vpc2_cidr_block = "10.1.0.0/16"
+vpc2_tags            = {
+  "Name"  = "Exercise-7-VPC2"
+}
 availability_zone1 = "us-east-1a"
 availability_zone2 = "us-east-1b" 
 
-#Public Subnet
-subnet_public_cidr_block = "10.0.0.0/24"
-subnet_public_tags       = {
-  "Name"  = "Exercise-7-Public-Subnet"
+
+vpc1_subnet1_cidr_block = "10.0.0.0/24"
+subnet_tags       = {
+  "Name"  = "Exercise-7-Subnets"
 }
 map_public_ip_on_launch = true
-subnet_public_cidr_block2 = "10.1.0.0/24"
+vpc2_subnet1_cidr_block = "10.1.0.0/24"
 
-#Private Subnet
-subnet_private_cidr_block = "10.0.1.0/24"
-subnet_private_tags       = {
-  "Name"  = "Exercise-7-Private-Subnet"
-}
-subnet_private_cidr_block2 = "10.1.1.0/24"
 
-#Public Route Table
-route_table_public_tags    = {
-  "Name"  = "Exercise-7-Public-Route-Table"
+vpc1_subnet2_cidr_block = "10.0.1.0/24"
+
+vpc2_subnet2_cidr_block = "10.1.1.0/24"
+
+route_table_tags    = {
+  "Name"  = "Exercise-7-Route-Tables"
 }
 
-#Private Route Table
-route_table_private_tags    = {
-  "Name"  = "Exercise-7-Private-Route-Table"
-}
 
 #Internet Gateway
 internet_gateway_tags    = {

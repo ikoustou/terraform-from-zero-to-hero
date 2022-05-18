@@ -70,4 +70,8 @@ You also messed up the naming of instances. for example you named an instance "e
 Also I didn't see the vpc-peering-accepter resource.
 I really liked the way you used the "depends_on" tool (for subnets, VPC peering etc.). Great job.
 
+# Exercise7
+Great progress!!! 20 resources to be added.
 
+## Comments
+1. I was super impressed by the fact that you put tags everywhere. I just love it! I suppose it has to do with good habits you learned while working with your team.

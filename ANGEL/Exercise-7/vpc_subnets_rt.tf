@@ -1,105 +1,105 @@
-module "vpc" {
+module "vpc1" {
   source = "./modules/vpc"
 
-  vpc_cidr_block = var.vpc_cidr_block
-  tags = var.vpc_tags
+  vpc_cidr_block = var.vpc1_cidr_block
+  tags = var.vpc1_tags
 }
 
-module "subnet_public" {
+module "vpc1_subnet1" {
   source = "./modules/subnet"
 
-  vpc_id = module.vpc.instance.id
-  subnet_cidr_block = var.subnet_public_cidr_block
+  vpc_id = module.vpc1.instance.id
+  subnet_cidr_block = var.vpc1_subnet1_cidr_block
   map_public_ip_on_launch = var.map_public_ip_on_launch
-  tags = var.subnet_public_tags
+  tags = var.subnet_tags
   availability_zone       = var.availability_zone1
 }
 
-module "subnet_private" {
+module "vpc1_subnet2" {
   source = "./modules/subnet"
 
-  vpc_id =  module.vpc.instance.id
-  subnet_cidr_block = var.subnet_private_cidr_block
-  tags = var.subnet_private_tags
+  vpc_id =  module.vpc1.instance.id
+  subnet_cidr_block = var.vpc1_subnet2_cidr_block
+  tags = var.subnet_tags
   availability_zone       = var.availability_zone2
 }
 
-module "route_table_public" {
+module "vpc1_route_table1" {
   source = "./modules/route_table"
 
-  vpc_id =  module.vpc.instance.id
-  tags = var.route_table_public_tags
+  vpc_id =  module.vpc1.instance.id
+  tags = var.route_table_tags
 }
 
-module "route_table_private" {
+module "vpc1_route_table2" {
   source = "./modules/route_table"
 
-  vpc_id =  module.vpc.instance.id
-  tags = var.route_table_private_tags
+  vpc_id =  module.vpc1.instance.id
+  tags = var.route_table_tags
 }
 
-module "route_table_association_public" {
+module "vpc1_route_table_association1" {
   source = "./modules/route_table_association"
-  route_table_id = module.route_table_public.instance.id
-  subnet_id = module.subnet_public.instance.id
+  route_table_id = module.vpc1_route_table1.instance.id
+  subnet_id = module.vpc1_subnet1.instance.id
 }
 
-module "route_table_association_private" {
+module "vpc1_route_table_association2" {
   source = "./modules/route_table_association"
-  route_table_id = module.route_table_private.instance.id
-  subnet_id = module.subnet_private.instance.id
+  route_table_id = module.vpc1_route_table2.instance.id
+  subnet_id = module.vpc1_subnet2.instance.id
 }
 
 #vpc2
 module "vpc2" {
   source = "./modules/vpc"
 
-  vpc_cidr_block = var.vpc_cidr_block2
-  tags = var.vpc_tags
+  vpc_cidr_block = var.vpc2_cidr_block
+  tags = var.vpc2_tags
 }
 
-module "subnet_public2" {
+module "vpc2_subnet1" {
   source = "./modules/subnet"
 
   vpc_id = module.vpc2.instance.id
-  subnet_cidr_block = var.subnet_public_cidr_block2
-  tags = var.subnet_public_tags
+  subnet_cidr_block = var.vpc2_subnet1_cidr_block
+  tags = var.subnet_tags
   availability_zone       = var.availability_zone1
 }
 
-module "subnet_private2" {
+module "vpc2_subnet2" {
   source = "./modules/subnet"
 
   vpc_id =  module.vpc2.instance.id
-  subnet_cidr_block = var.subnet_private_cidr_block2
-  tags = var.subnet_private_tags
+  subnet_cidr_block = var.vpc2_subnet2_cidr_block
+  tags = var.subnet_tags
   availability_zone       = var.availability_zone2
 }
 
-module "route_table_public2" {
+module "vpc2_route_table1" {
   source = "./modules/route_table"
 
   vpc_id =  module.vpc2.instance.id
-  tags = var.route_table_public_tags
+  tags = var.route_table_tags
 }
 
-module "route_table_private2" {
+module "vpc2_route_table2" {
   source = "./modules/route_table"
 
   vpc_id =  module.vpc2.instance.id
-  tags = var.route_table_private_tags
+  tags = var.route_table_tags
 }
 
-module "route_table_association_public2" {
+module "vpc2_route_table_association1" {
   source = "./modules/route_table_association"
-  route_table_id = module.route_table_public2.instance.id
-  subnet_id = module.subnet_public2.instance.id
+  route_table_id = module.vpc2_route_table1.instance.id
+  subnet_id = module.vpc2_subnet1.instance.id
 }
 
-module "route_table_association_private2" {
+module "vpc2_route_table_association2" {
   source = "./modules/route_table_association"
-  route_table_id = module.route_table_private2.instance.id
-  subnet_id = module.subnet_private2.instance.id
+  route_table_id = module.vpc2_route_table2.instance.id
+  subnet_id = module.vpc2_subnet2.instance.id
 }
 
 #transit gateway
@@ -113,16 +113,16 @@ module "transit_gateway" {
 module "transit_gateway_attach_vpc1" {
   source = "./modules/transit_gateway_vpc_attachment"
   
-  subnet_ids         = [module.subnet_public.instance.id , module.subnet_private.instance.id]
+  subnet_ids         = [module.vpc1_subnet1.instance.id , module.vpc1_subnet2.instance.id]
   transit_gateway_id = module.transit_gateway.instance.id
-  vpc_id             = module.vpc.instance.id
+  vpc_id             = module.vpc1.instance.id
     
 }
 
 module "transit_gateway_attach_vpc2" {
   source = "./modules/transit_gateway_vpc_attachment"
   
-  subnet_ids         = [module.subnet_public2.instance.id , module.subnet_private2.instance.id]
+  subnet_ids         = [module.vpc2_subnet1.instance.id , module.vpc2_subnet2.instance.id]
   transit_gateway_id = module.transit_gateway.instance.id
   vpc_id             = module.vpc2.instance.id
     
@@ -130,29 +130,29 @@ module "transit_gateway_attach_vpc2" {
 
 module "route_peering1" {
   source = "./modules/route"
-  route_table_id = module.route_table_public.instance.id
-  destination_cidr_block = var.vpc_cidr_block2
+  route_table_id = module.vpc1_route_table1.instance.id
+  destination_cidr_block = var.vpc2_cidr_block
   transit_gateway_id  = module.transit_gateway.instance.id
 }
 
 module "route_peering2" {
   source = "./modules/route"
-  route_table_id = module.route_table_public2.instance.id
-  destination_cidr_block = var.vpc_cidr_block
+  route_table_id = module.vpc2_route_table1.instance.id
+  destination_cidr_block = var.vpc1_cidr_block
   transit_gateway_id  = module.transit_gateway.instance.id
 }
 
 module "route_peering3" {
   source = "./modules/route"
-  route_table_id = module.route_table_private.instance.id
-  destination_cidr_block = var.vpc_cidr_block2
+  route_table_id = module.vpc1_route_table2.instance.id
+  destination_cidr_block = var.vpc2_cidr_block
   transit_gateway_id  = module.transit_gateway.instance.id
 }
 
 module "route_peering4" {
   source = "./modules/route"
-  route_table_id = module.route_table_private2.instance.id
-  destination_cidr_block = var.vpc_cidr_block
+  route_table_id = module.vpc2_route_table2.instance.id
+  destination_cidr_block = var.vpc1_cidr_block
   transit_gateway_id  = module.transit_gateway.instance.id
 }
 

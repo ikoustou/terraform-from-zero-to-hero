@@ -30,7 +30,7 @@ And the second subnet would take the next available: 10.0.1.0/24
 Repeat the previous exercise. This time pay attention to use modules for everything and do not combine modules with resources inside the main.tf:
 *   Create to subfolders with the names: stage1 and stage2
 *   Remove eny terraform.state and any .terraform folder from the root level
-*   Go inside each stage and run terraform init to deploy the same resources in us-east-1 and us-east respectively
+*   Go inside each stage and run terraform init to deploy the same resources in us-east-1 and us-east-2 respectively
 *   Define a variable with name "region"
 *   Remove any default value from all variables
 *   Use a dev.tfvars file to give values for all variables
@@ -172,6 +172,23 @@ Launch two EC2 instances on each VPC. On the First VPC launch it on the public s
 Test the infrastructure by ssh on the first instance of VPC1 and pinging the second instance on VPC2.
 It is similar to Exercise-6. Here, we use 2 VPCs peered via TGW instead of VPC peering.
 
+
+## Exercise-8
+Same exercise like Ex-7 the difference will be creation of two transit gateway route tables (apart from the one that is created with the TGW) associated with each of the TGW-VPC-attachments (instead of having only one TGW-Route-Table with "Default Association" enabled
+Create 2 VPCs, each one with two subnets, route-tables. For the first VPC1 associate an internet gateway (IGW) and a default route to point to the IGW from the public route table. 
+Create a Transit Gateway. Choose your ASN number (range from 64512 to 65534). **Disable "default_route_table_association"** 
+Create Transit Gateway VPC attachments You can define "depends_on" sections to be sure that the VPC will be created before the TGW-VPC-attachment.
+Create 2 TGW-route-tables, each one will be dedicated to a specific VPC attachment.
+Create 2 TGW-route-table-associations with the TGW-VPC-Attachments
+Create static routes inside each of TGW-Route-Tables to cend traffic routed to the **other** VPC-CIDR with the right TGW-VPC-Attachment as the next hop (destination).
+
+Create routes inside the VPC route tables to send traffic with destination the other VPC_CIDR block to the TGW. **to make your life easier: create them via propagation defining a module for the resource "aws_ec2_transit_gateway_route_table_propagation" instead of creating static tgw-route via "aws_ec2_transit_gateway_route"**.
+
+
+Launch two EC2 instances on each VPC. On the First VPC launch it on the public subnet and allow ssh with Security Groups. On the second VPC it doesn't matter in which of the two subnets you will launch it but you have to allow Ping (icmp). 
+
+Test the infrastructure by ssh on the first instance of VPC1 and pinging the second instance on VPC2.
+It is similar to Exercise-7. Here, we use dedicated TGW-Route-Tables instead of having only one (the default-route-table-association).
 
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
