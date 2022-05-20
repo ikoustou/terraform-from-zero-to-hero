@@ -239,6 +239,20 @@ It is similar to Exercise-7. Here, we use dedicated TGW-Route-Tables instead of 
 ### Test your infrastructure by ssh to bastion in VPC1 and ping to the ec2 in VPC2
 ![TRN-8-ssh](./images/TRN-8-ssh.PNG) 
 
+## Exercise-9
+Peer two VPCs in different region, let's say "us-east-1" and "us-east-2", using Transit Gateways (TGWs).
+Each VPC will have the same infrastructure as before: 2 subnets each, route tables, route-table-association, the first only will have an IGW and a "default" route to IGW. All same as previous exercises.
+
+Here you are going to create ** two TGWs** in 2 differents regions. You are going to use **two aws providers**.
+You will peer the 2 TGW with the help of 2 resources:
+* aws_ec2_transit_gateway_peering_attachment
+* aws_ec2_transit_gateway_peering_attachment_accepter
+
+## Tips:
+* Do not use dedicated TGW-Route-Tables and leave the "default association" and "default propagation" for each TGW enabled
+* Create a route inside each of the default TGW-RT to send traffic with destination **the other VPC CIDR** to the TGW-Peering-Attachment resource. You will use different providers for these two routes, as they will be existing in different regions.
+
+
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
 
