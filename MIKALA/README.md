@@ -75,3 +75,7 @@ Great progress!!! 20 resources to be added.
 
 ## Comments
 1. I was super impressed by the fact that you put tags everywhere. I just love it! I suppose it has to do with good habits you learned while working with your team.
+2. You created only one subnet per VPC. It works for the purposes of creating one bastion inside the public subnet of vpc1 and pinging the other instance inside vpc2. Hoever, I would like you to create 2 subnets per VPC. Why? because you will copy the terraform code in another exersice where we will be needing 2 subnets for high availability.
+Just to let you know: many AWS services when it's the case to create Endpoints for them, they need 2 subnets to create the endpoints (endpoint means ENI (Elastic Network Interface), it means a Network card which means = IP address )
+
+3. You didn't have to define extra variables for the destination_cidr. You could use the VPC_CIDR vars.

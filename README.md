@@ -4,6 +4,8 @@ Please work only inside your personal folder. I will put here (at root level) th
 That way we do not have to create branches. After each exercise **always DESTROY** the infrastructure. Make sure you also run a "terraform destroy -var-file=dev.tfvars" before you delete the state file. Otherwise you will have to delete **manually** the resources. (it is not so difficult ;) ).
 Clean your folder after exercise and start solving the next one. 
 
+# Author Ioannis Koustoudis
+Author Ioannis Koustoudis, ikoustou@gmail.com
 
 ## Exercise-1
 ### Definition
@@ -176,13 +178,55 @@ It is similar to Exercise-6. Here, we use 2 VPCs peered via TGW instead of VPC p
 ## Exercise-8
 Same exercise like Ex-7 the difference will be creation of two transit gateway route tables (apart from the one that is created with the TGW) associated with each of the TGW-VPC-attachments (instead of having only one TGW-Route-Table with "Default Association" enabled
 Create 2 VPCs, each one with two subnets, route-tables. For the first VPC1 associate an internet gateway (IGW) and a default route to point to the IGW from the public route table. 
-Create a Transit Gateway. Choose your ASN number (range from 64512 to 65534). **Disable "default_route_table_association"** 
+Create a Transit Gateway. Choose your ASN number (range from 64512 to 65534). 
+
+**Disable "default_route_table_association", AND "default_route_table_propagation". These two arguments are of string type and they take values "enable" or "disable"**. You can define them as optional inside the TGW module. I hope you know how to define an optional variable by now. Here is a piece of code:
+```terraform
+# tgw main.tf
+resource "aws_ec2_transit_gateway" "tgw" {
+  amazon_side_asn                 = var.amazon_side_asn
+
+  default_route_table_association = var.default_route_table_association
+  default_route_table_propagation = var.default_route_table_propagation 
+}
+# tgw vars.tf
+variable "amazon_side_asn" {
+  description = "Amazon side ASN"
+  type        = string
+}
+variable "default_route_table_association" {
+  type    = string
+  default = "enable" 
+}
+variable "default_route_table_propagation" {
+  type    = string
+  default = "enable" 
+}
+```
+And when you will deploy the TGW instance:
+```terraform
+# tgw
+module "tgw" {
+  source = "./modules/tgw"
+
+  amazon_side_asn = var.amazon_side_asn
+  default_route_table_association = "disable"
+  default_route_table_propagation = "disable"
+}
+```
 Create Transit Gateway VPC attachments You can define "depends_on" sections to be sure that the VPC will be created before the TGW-VPC-attachment.
+**SUPER IMPORTANT**: Do exactly the same as above example with the two **boolean** variables of the "aws_ec2_transit_gateway_vpc_attachment" resource:
+* transit_gateway_default_route_table_association  and
+* transit_gateway_default_route_table_propagation
+Check solution. 
+Why is this so important? because the tgw-vpc-attachment resource has these two bool variables as "true" by default and it will search for the **default** TGW-Route-Table to attach them which **does not exist** and the code will be failing.
+
+
 Create 2 TGW-route-tables, each one will be dedicated to a specific VPC attachment.
 Create 2 TGW-route-table-associations with the TGW-VPC-Attachments
 Create static routes inside each of TGW-Route-Tables to cend traffic routed to the **other** VPC-CIDR with the right TGW-VPC-Attachment as the next hop (destination).
 
-Create routes inside the VPC route tables to send traffic with destination the other VPC_CIDR block to the TGW. **to make your life easier: create them via propagation defining a module for the resource "aws_ec2_transit_gateway_route_table_propagation" instead of creating static tgw-route via "aws_ec2_transit_gateway_route"**.
+Create routes inside the TGW-Route-Tables to send traffic with destination the other VPC_CIDR block to the TGW. **to make your life easier: create them via propagation defining a module for the resource "aws_ec2_transit_gateway_route_table_propagation" instead of creating static tgw-route via "aws_ec2_transit_gateway_route"**.
 
 
 Launch two EC2 instances on each VPC. On the First VPC launch it on the public subnet and allow ssh with Security Groups. On the second VPC it doesn't matter in which of the two subnets you will launch it but you have to allow Ping (icmp). 
@@ -190,5 +234,12 @@ Launch two EC2 instances on each VPC. On the First VPC launch it on the public s
 Test the infrastructure by ssh on the first instance of VPC1 and pinging the second instance on VPC2.
 It is similar to Exercise-7. Here, we use dedicated TGW-Route-Tables instead of having only one (the default-route-table-association).
 
+**Good to remember**: each TGW-VPC-Attachment is associated with only **ONE** TGW-Route-Table.
+
+### Test your infrastructure by ssh to bastion in VPC1 and ping to the ec2 in VPC2
+![TRN-8-ssh](./images/TRN-8-ssh.PNG) 
+
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
+
+
