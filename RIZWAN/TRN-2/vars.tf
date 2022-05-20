@@ -65,5 +65,7 @@ variable "route_table_association_1_name" {
 
 variable "route_table_association_2_name" {
     type        = string
-    description = "Route table association 2 name tag"
+    description = "Route Table association 2 name tag"
 }
+
+
