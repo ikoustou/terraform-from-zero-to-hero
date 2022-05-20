@@ -11,44 +11,40 @@ terraform {
 
 module "vpc" {
     source     = "./modules/vpc"
-    cidr_block = var.vpc_cidr_block
-    name       = var.vpc_name
-    tags       = var.vpc_tags
+    vpc_cidr_block = var.vpc_cidr_block
+    vpc_name       = var.vpc_name
 }
 
 module "subnet_1" {
     source     = "./modules/subnet"
     vpc_id     = module.vpc.id
     cidr_block = var.subnet_1_cidr_block
-    name       = var.subnet_1_name
-    tags       = var.subnet_1_tags
+    subnet_name       = var.subnet_1_name
 }
 
 module "subnet_2" {
     source     = "./modules/subnet"
     vpc_id     = module.vpc.id
     cidr_block = var.subnet_2_cidr_block
-    name       = var.subnet_2_name
-    tags       = var.subnet_2_tags
+    subnet_name       = var.subnet_2_name
 }
 
 module "routetable" {
     source = "./modules/routetable"
     vpc_id = module.vpc.id
-    name   = var.route_table_name
-    tags   = var.route_table_tags
+    rt_name   = var.route_table_name
 }
 
 module "routetable_association_1" {
     source         = "./modules/routetable_assoc"
     subnet_id      = module.subnet_1.id
-    route_table_id = module.route_table.id
-    name           = var.route_table_association_1_name
+    route_table_id = module.routetable.id
+    rtassoc_name   = var.route_table_association_1_name
 }
 
 module "routetable_association_2" {
     source         = "./modules/routetable_assoc"
     subnet_id      = module.subnet_2.id
-    route_table_id = module.route_table.id
-    name           = var.route_table_association_2_name
+    route_table_id = module.routetable.id
+    rtassoc_name   = var.route_table_association_2_name
 }

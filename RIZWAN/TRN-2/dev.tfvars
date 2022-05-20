@@ -22,3 +22,8 @@ route_table_name = "route_table"
 route_table_tags = {
   "Name"  = "route_table"
 }
+
+route_table_association_1_name = "route_table_association_1_name"
+route_table_association_2_name = "route_table_association_2_name"
+
+
