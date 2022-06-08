@@ -7,50 +7,40 @@ terraform {
   }
 }
 
-resource "aws_vpc" "main" {
-    cidr_block = var.cidr_block
-
-    tags = {
-        Name = "chris"
-        Environment = "Dev"
-        Terraform = "True"
-    }
+provider "aws" {
+  region = var.region
 }
 
-resource "aws_subnet" "subnet-resource-1" {
-    vpc_id = aws_vpc.main.id
-    cidr_block = "10.0.1.0/24"
-
-    tags =  {
-        Name = "subnet-resource-1"
-    }  
+module "VPC_1" {
+  source = "./modules/vpc"
+  cidr_block = var.cidr_block
 }
 
-resource "aws_subnet" "subnet-resource-2" {
-    vpc_id = aws_vpc.main.id
-    cidr_block = "10.0.2.0/24"
-
-    tags = {
-        Name = "subnet-resource-2"
-    }
+module "SUBNET_1" {
+  source = "./modules/subnet"
+  cidr_block = var.subnet_1_cidr
+  vpc_id = module.VPC_1.aws_vpc_output.id
 }
 
-resource "aws_route_table" "route-table-1" {
-  vpc_id = aws_vpc.main.id
-
-  route = []
-
-  tags = {
-    Name = "route-table-exercise-1"
-  }
+module "SUBNET_2" {
+  source = "./modules/subnet"
+  cidr_block = var.subnet_2_cidr
+  vpc_id = module.VPC_1.aws_vpc_output.id
 }
 
-# resource "aws_route_table_association" "assoc-a" {
-#   subnet_id      = aws_subnet.main.id
-#   route_table_id = aws_route_table.bar.id
-# }
+module "ROUTE_TABLE_1" {
+  source = "./modules/route_table"
+  vpc_id = module.VPC_1.aws_vpc_output.id
+}
 
-# resource "aws_route_table_association" "assoc-b" {
-#   subnet_id      = aws_subnet.main.id
-#   route_table_id = aws_route_table.main.id
-# }
+module "ROUTE_TABLE_ACCOC_1" {
+  source = "./modules/route_table_assoc"
+  subnet_id = module.SUBNET_1.aws_subnet_output.id
+  route_table_id = module.ROUTE_TABLE_1.aws_route_table_1_output.id
+}
+
+module "ROUTE_TABLE_ACCOC_2" {
+  source = "./modules/route_table_assoc"
+  subnet_id = module.SUBNET_2.aws_subnet_output.id
+  route_table_id = module.ROUTE_TABLE_1.aws_route_table_1_output.id
+}
