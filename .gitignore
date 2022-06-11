@@ -32,3 +32,6 @@ override.tf.json
 
 #Lock files
 *.lock.hcl
+
+# Version files
+version.tf
