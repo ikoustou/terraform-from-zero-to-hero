@@ -239,18 +239,40 @@ It is similar to Exercise-7. Here, we use dedicated TGW-Route-Tables instead of 
 ### Test your infrastructure by ssh to bastion in VPC1 and ping to the ec2 in VPC2
 ![TRN-8-ssh](./images/TRN-8-ssh.PNG) 
 
+
+
 ## Exercise-9
-Peer two VPCs in different region, let's say "us-east-1" and "us-east-2", using Transit Gateways (TGWs).
-Each VPC will have the same infrastructure as before: 2 subnets each, route tables, route-table-association, the first only will have an IGW and a "default" route to IGW. All same as previous exercises.
+Create an EC2 instance resource four (4) times using **count**. Use the default VPC in a region. So, there is no need to create VPC.
+Also no need to ssh, so you don't have to define key-pair. You can still use the data aws_ami with the following filters to query the ami id for "amazon linux" for this region, OR you can just hardcode and provide this value (the ami id for the region you are working)
+```terraform
+data "aws_ami" "amazon" {
+  owners      = ["amazon"]
+  most_recent = true
 
-Here you are going to create ** two TGWs** in 2 differents regions. You are going to use **two aws providers**.
-You will peer the 2 TGW with the help of 2 resources:
-* aws_ec2_transit_gateway_peering_attachment
-* aws_ec2_transit_gateway_peering_attachment_accepter
+  filter {
+    name   = "owner-alias"
+    values = ["amazon"]  
+  }
 
-## Tips:
-* Do not use dedicated TGW-Route-Tables and leave the "default association" and "default propagation" for each TGW enabled
-* Create a route inside each of the default TGW-RT to send traffic with destination **the other VPC CIDR** to the TGW-Peering-Attachment resource. You will use different providers for these two routes, as they will be existing in different regions.
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm*"]
+  }
+}
+```
+
+## Exercise-10
+Create an EC2 instance only if a boolean variable is **true**.
+
+### Tip: Use "count" in combination with "conditional expression"
+Conditional expression:
+condition ? value_when_true : value_when_false
+
+
+## Exercise-11
+Create so many VPCs as the length of a variable of type list. Let's say create 2 VPCs, initially. Then add one more CIDR to see how the terraform plan will show one more VPC.
+
+### Tip: use the legth() function which gives you the legth of a list variable
 
 
 # Useful tips
