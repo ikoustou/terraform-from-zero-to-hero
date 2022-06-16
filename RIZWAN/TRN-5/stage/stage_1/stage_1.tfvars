@@ -61,13 +61,13 @@ sg_pub_ssh_tags                 = {
 }
 
 i_public_type                   = "t2.micro"
-i_public_key_name               = "mikala-tf-zero-hero"
+i_public_key_name               = "riz-tf-zero-hero"
 i_public_tags                   = {
   "Name" = "e5_pub_ec2_instance"
 }
 
 i_private_type                  = "t2.micro"
-i_private_key_name              = "mikala-tf-zero-hero"
+i_private_key_name              = "riz-tf-zero-hero"
 i_private_tags                  = {
   "Name" = "e5_priv_ec2_instance"
 }

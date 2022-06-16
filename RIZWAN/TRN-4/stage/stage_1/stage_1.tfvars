@@ -43,7 +43,7 @@ sg_tags            = {
 
 ami           = "ami-0c02fb55956c7d316"
 instance_type = "t2.micro"
-key_name      = "mikala-tf-zero-hero"
+key_name      = "riz-tf-zero-hero"
 instance_tags = {
   "Name" = "e4_ec2_instance"
 }
