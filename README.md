@@ -274,6 +274,34 @@ Create so many VPCs as the length of a variable of type list. Let's say create 2
 
 ### Tip: use the legth() function which gives you the legth of a list variable
 
+## Exercise-12
+Create a variable of type "map(object)" in such way that the keys of each object will be "vpc1", "vpc2" and inside each object you will give two key-value pairs, with keys:
+* name
+* cidr
+Create so many vpcs using the **for_each** terraform function. After the first creation, play commenting out VPC objects and see how the VPCs will be destroyed.
+
+### Tip: use each.value.name and each.value.cidr to retrieve the value of second level keys: name and cidr respectively.
+You can use each.key and each.value to retrieve either the key or the value of each loop.
+
+### Tip2: only in case you feel you can not create the variable have a look here:
+```terraform
+# vars.tf file
+variable "vpcs_data" {
+    description = "vpcs objects"
+}
+
+# dev-vars.tfvars file
+vpcs_data = {
+    vpc1 = {
+        name = "VPC1"
+        cidr = "10.0.0.0/16"
+    }
+    vpc2 = {
+        name = "VPC2"
+        cidr = "10.1.0.0/16"
+    }
+}
+```
 
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
