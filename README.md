@@ -303,6 +303,20 @@ vpcs_data = {
 }
 ```
 
+### Exercise-13
+Tips about loops:
+* When you use count on a resource that resource becomes member of a list os resources. 
+Pay attention on loops based on index. Changing the order in an array where the loop is based on will cause terraform to re-create (destroy the old and create the new) resources. Experiment with an exercise like Exercise-11 and after applying the plan try to re-arrange the order of the list and re-run the plan again.
+* When you use for_each on a resource, it becomes a map of resources. (maps do not have order). This is very important as it allowes us to remove items from the middle of the map without affecting the rest of the resources.
+* Terraform requires the **count** and **for_each** are countable during the plan phase, **before** any resources are created. Count and for_each can not be results of any calculation.
+* Module support for count was added in Terraform 0.13, and previous versions can only use it with resources.
+
+### Exercise-14
+As per Chris' suggestion: create a vpc with cidr 10.0.0.0/16 in us-east-1 with 2 subnets: 10.0.0.0/24 and 10.0.1.0/24 and two (2) route tables associated with one subnet each.
+Use a boolean variable named like "public_subnet1_bool" to control the creation of an IGW and a default route to the IGW inside the first subnet's route table.
+Play with the boolean variable to either create or destroy these two resources (IGW and the default route-to-IGW) based on its value.
+
+
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
 
