@@ -316,6 +316,10 @@ As per Chris' suggestion: create a vpc with cidr 10.0.0.0/16 in us-east-1 with 2
 Use a boolean variable named like "public_subnet1_bool" to control the creation of an IGW and a default route to the IGW inside the first subnet's route table.
 Play with the boolean variable to either create or destroy these two resources (IGW and the default route-to-IGW) based on its value.
 
+### Exercise-15 
+Import existing infrastructure into terraform state file.
+Deploy something simple using the console and try to import it inside the terraform state. You will need to use the **import** command of each resource that you import and of course to have written the terraform code for the imported resource.
+
 
 # Useful tips
 *   module **source** argument starts either with "./" or "../" to indicate that a local path is intended, to distinguish from a module registry address.
