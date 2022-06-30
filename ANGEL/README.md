@@ -67,3 +67,9 @@ rtt min/avg/max/mdev = 1.164/1.442/2.139/0.404 ms
 4. This is not so important: You do not need SG to allow ping to the bastion (jumphost). Only SG to allow ping to the ec2 with the private only IP. Think about it! It is not a problem however.
 
 
+# Exercise 9, 10 , 11 (12 ?)
+You did a great job so far! You did the extra mile of creating a good structure with modules, stage subfulders etc. My solution was simpler but what you did is the right thing.
+
+## Comments 
+* Please try **always to place count on the first line** if it is a resource ( and after source if it is module).
+* After count place a blank line. So, the eye can catch the **count** easily.
