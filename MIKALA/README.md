@@ -79,3 +79,6 @@ Great progress!!! 20 resources to be added.
 Just to let you know: many AWS services when it's the case to create Endpoints for them, they need 2 subnets to create the endpoints (endpoint means ENI (Elastic Network Interface), it means a Network card which means = IP address )
 
 3. You didn't have to define extra variables for the destination_cidr. You could use the VPC_CIDR vars.
+
+# Exercises 9, 10, 11, 12
+Great job! If you can explain all you did to a newbie you are a star! Actually my solution was super simple (without modules stages etc.) but you did all the hard work to present a simple exercise following the rules and good habits (which will save you in case of a complex project)
