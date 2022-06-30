@@ -309,7 +309,7 @@ Tips about loops:
 Pay attention on loops based on index. Changing the order in an array where the loop is based on will cause terraform to re-create (destroy the old and create the new) resources. Experiment with an exercise like Exercise-11 and after applying the plan try to re-arrange the order of the list and re-run the plan again.
 * When you use for_each on a resource, it becomes a map of resources. (maps do not have order). This is very important as it allowes us to remove items from the middle of the map without affecting the rest of the resources.
 * Terraform requires the **count** and **for_each** are countable during the plan phase, **before** any resources are created. Count and for_each can not be results of any calculation.
-* Module support for count was added in Terraform 0.13, and previous versions can only use it with resources.
+* Module support for count was added in Terraform 0.13, and previous versions can only use it with resources. Be carefull with that and always check the terraform version. If it's less than 13 then you can not use count with modules.
 
 ### Exercise-14
 As per Chris' suggestion: create a vpc with cidr 10.0.0.0/16 in us-east-1 with 2 subnets: 10.0.0.0/24 and 10.0.1.0/24 and two (2) route tables associated with one subnet each.
